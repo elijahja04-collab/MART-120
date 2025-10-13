@@ -1,0 +1,30 @@
+span{
+color:crimson;
+font-family:sans-serif;
+
+
+}
+
+.blackColor{
+color:black;
+font-family:sans-serif;
+font-size:24px;
+}
+
+label[for="yesOption"] {
+    color: green;
+    font-family: sans-serif;
+}
+
+label[for="noOption"] {
+    color: red;
+    font-family: sans-serif;
+}
+
+body.contact-page {
+background-image: url(597566.jpg);
+background-size: cover;
+background-attachment: fixed;
+background-position: center;
+background-repeat: no-repeat;
+}
