@@ -1,0 +1,79 @@
+<html>
+
+<head>
+        <title>Contact Us</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="mainstyle.css">
+
+   <script>
+        function checkboxes()
+        {
+           event.preventDefault();
+            var firstName = document.getElementById("fName"  ).value.trim();
+            var lastName = document.getElementById("lName").value.trim();
+            var emailAddress = document.getElementById("eaddress").value.trim();
+            var yesChecked = document.getElementById("yesOption").checked;
+            var noChecked = document.getElementById("noOption").checked;
+           
+           
+            if(firstName == "")
+        {
+            document.getElementById("fName").style.backgroundColor= "red";
+            document.getElementById("fName").focus();
+            window.alert("Please enter first name");
+            return;
+        }
+            if(lastName =="")
+        {
+            document.getElementById("lName").style.backgroundColor= "red";
+            document.getElementById("lName").focus();
+            window.alert("Please enter last name");
+            return;
+        }
+            if(emailAddress =="")
+    {
+            document.getElementById("eaddress").style.backgroundColor= "red";
+            document.getElementById("eaddress").focus();
+            window.alert("Please enter email address");
+            return;
+    }
+            if(!yesChecked && !noChecked)
+    {
+            window.alert("Please select whether you accept the terms");
+            return;
+    }
+            if(!yesChecked) 
+            {
+                window.alert("You must accept the terms to continue");
+                return;
+            }
+            window.alert("Form submitted successfully");
+       
+        }
+    </script>
+        </head>
+    <body>
+        
+        <form action="thirdpage.html" method="POST">
+            First Name: <input type="text" id="fName"><br>
+            Last Name: <input type="text" id="lName"><br>
+            Email Address: <input type="text" id="eaddress"><br>
+            Accept Terms?
+            <input type="radio" name="terms" id="yesOption" value="Yes">
+<label for="yesOption">Yes</label>
+
+<input type="radio" name="terms" id="noOption" value="No">
+<label for="noOption">No</label><br>
+           
+<button class="btn btn-primary" onclick='checkboxes(event);'>Submit</button>
+        </form>
+
+
+
+<a href="firstwebsite.html" style="text-decoration: none;">Go to home page</a>
+<a href="secondpage.html" style="text-decoration: none;">Go to second page</a>
+
+    </body>
+</html>
+
