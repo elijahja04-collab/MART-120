@@ -3,17 +3,6 @@ var yPlayer = 25;
 var diameterPlayer = 10;
 var speed = 3;
 
-var xObstacleOne = 250;
-var yObstacleOne = 250;
-var diameterObstacleOne = 30;
-var xspeedObstacleOne;
-var yspeedObstacleOne;
-
-var xObstacleTwo = 500;
-var yObstacleTwo = 150;
-var diameterObstacleTwo = 60;
-var xspeedObstacleTwo;
-var yspeedObstacleTwo;
 
 var mouseShapeX;
 var mouseShapeY;
@@ -24,8 +13,16 @@ var hasWon = false;
 var myXs = [];
 var myYs = [];
 var myDiameters = [];
+var myColors = [];
+var myXSpeeds = [];
+var myYSpeeds = [];
 
 console.log("Console is working!");
+
+function getRandomNumber(number)
+    {
+        return Math.floor(Math.random()*number)+10;
+    }
 
 function setup()
     {
@@ -34,14 +31,20 @@ function setup()
         yspeedObstacleOne =random(-3,3);
         xspeedObstacleTwo = random(-3,3);
         yspeedObstacleTwo =random(-3,3);
-        for(var i = 0; i <3; i++);
+        var x = 25;
+        var y = 25;
+        var diameter = 10;
+        for(var i = 0; i <5; i++)
         {
-            myXs[i]=x;
-            myYs[i]=y;
-            myDiameters[i]=diameter;
+            myXs[i]= getRandomNumber(800);
+            myYs[i]= getRandomNumber(600);
+            myDiameters[i]=getRandomNumber(100);
+            myColors[i] = color(random(255),random(255),random(255));
             x += 25;
             y += 25;
             diameter += 10;
+            myXSpeeds[i] = random(-3,3);
+            myYSpeeds[i] = random(-3,3);
 
 
         }
@@ -49,19 +52,19 @@ function setup()
 
 function draw()
     {
+        background(0);
+        moveArrayCircles();
         for (var i = 0; i < myXs.length; i++)
         {
-            circle(myXs[i]; myYs[i]; myDiameters[i];)
+            fill(myColors[i])
+            circle(myXs[i], myYs[i], myDiameters[i])
         }
-        background(0);
         createCharacter();
-        createObstacles();
         createBorders(10);
         exitSign();
         winCondition();
         characterMovement();
         mouseCreation();
-        obstacleMovement();
         outOfBounds();
 }
 
@@ -104,15 +107,6 @@ function createCharacter()
     {
     fill(75,200,29);
     circle(xPlayer,yPlayer,diameterPlayer);
-    }
-//creation of obstacles
-    function createObstacles()
-    {
-        fill(255,0,0);
-        circle(xObstacleOne,yObstacleOne,diameterObstacleOne);
-        fill(0,0,255);
-        circle(xObstacleTwo,yObstacleTwo,diameterObstacleTwo); 
-
     }
 function winCondition()
     {
@@ -182,47 +176,13 @@ function mouseCreation()
          fill(0,255,0);
         circle(mouseShapeX,mouseShapeY,20);
     }
-function obstacleMovement()
-    {
-        if(xObstacleOne > width)
-        {
-        xObstacleOne = 0;
-        }
-        if(xObstacleOne < 0)
-        {
-        xObstacleOne = width;
-        }
-        if(yObstacleOne > height)
-        {
-        yObstacleOne = 0;
-        }
-        if(yObstacleOne < 0)
-        {
-        yObstacleOne = height;
-        }
-        
-        
-        if(xObstacleTwo > width)
-        {
-        xObstacleTwo = 0;
-        }
-        if(xObstacleTwo < 0)
-        {
-        xObstacleTwo = width;
-        }
-        if(yObstacleTwo > height)
-        {
-        yObstacleTwo = 0;
-        }
-        if(yObstacleTwo < 0)
-        {
-        yObstacleTwo = height;
-        }
-        xObstacleOne += xspeedObstacleOne;
-        yObstacleOne += yspeedObstacleOne;
-        xObstacleTwo += xspeedObstacleTwo;
-        yObstacleTwo += yspeedObstacleTwo;
-    
-    
-    
+function moveArrayCircles() {
+    for (var i = 0; i < myXs.length; i++) {
+        myXs[i] += myXSpeeds[i];
+        myYs[i] += myYSpeeds[i];
+        if (myXs[i] > width) myXs[i] = 0;
+        if (myXs[i] < 0) myXs[i] = width;
+        if (myYs[i] > height) myYs[i] = 0;
+        if (myYs[i] < 0) myYs[i] = height;
     }
+}
